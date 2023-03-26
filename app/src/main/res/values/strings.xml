@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DrawingApp</string>
+    <string name="large_btn">large-btn</string>
+    <string name="medium_btn">medium-btn</string>
+    <string name="small_btn">small-btn</string>
+    <string name="brush">brush</string>
+</resources>
