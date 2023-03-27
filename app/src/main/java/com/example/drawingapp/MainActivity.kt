@@ -2,6 +2,7 @@ package com.example.drawingapp
 
 import android.app.Dialog
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         drawingView?.setSizeForBrush(20.toFloat())
 
         val linearLayoutPaintColors = findViewById<LinearLayout>(R.id.paintColors)
-        mImageButtonCurrentPaint = linearLayoutPaintColors[2] as ImageButton
+        mImageButtonCurrentPaint = linearLayoutPaintColors[1] as ImageButton
         mImageButtonCurrentPaint!!.setImageDrawable(
             ContextCompat.getDrawable(this,R.drawable.pallete_pressed)
         )
@@ -53,5 +54,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         brushDialog.show()
+    }
+
+    fun paintClicked(view: View){
+        if(view !== mImageButtonCurrentPaint){
+            val imageButton = view as ImageButton
+            val colorTag = imageButton.tag.toString()
+            drawingView?.setColor(colorTag)
+
+            imageButton.setImageDrawable(
+                ContextCompat.getDrawable(this,R.drawable.pallete_pressed)
+            )
+            mImageButtonCurrentPaint?.setImageDrawable(
+                ContextCompat.getDrawable(this,R.drawable.pallete_normal)
+            )
+            mImageButtonCurrentPaint = view
+        }
     }
 }
