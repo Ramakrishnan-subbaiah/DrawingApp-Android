@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
 
     private var drawingView: DrawingView? = null
     private var mImageButtonCurrentPaint: ImageButton? = null
-    var customProgressDialog: Dialog? = null
+    private var customProgressDialog: Dialog? = null
 
-    val openGalleryLauncher: ActivityResultLauncher<Intent> =
+    private val openGalleryLauncher: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
             if (result.resultCode == RESULT_OK && result.data!=null){
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-   val requestPermission: ActivityResultLauncher<Array<String>> =
+   private val requestPermission: ActivityResultLauncher<Array<String>> =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
             permissions ->
             permissions.entries.forEach {
@@ -241,7 +241,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun shareImage(result: String){
         MediaScannerConnection.scanFile(this, arrayOf(result),null){
-            path,uri ->
+            _,uri ->
             val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND
             shareIntent.putExtra(Intent.EXTRA_STREAM,uri)
